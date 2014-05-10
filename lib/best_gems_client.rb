@@ -23,13 +23,15 @@ class BestGemsClient
           break if gems.empty? # If `current_page` is too large, an empty table will be returned.
 
           gems.each do |tr|
-            y << keys.zip(tr.search("td").map(&:text)).map{|key, value|
+            gem = keys.zip(tr.search("td").map(&:text)).map{|key, value|
               if key =~ /Rank|Diff|Downloads/
                 value = value.gsub(",", "").to_i
               end
               key = key.gsub(/\s/, "").split(/(?=[A-Z])/).join("_").downcase # to snake_case
               [key, value]
             }.to_h
+            gem["link"] = tr.at('a[href^="http://bestgems.org/gems/"]')["href"]
+            y << gem
           end
 
           break if html.at(".pagination .disabled") # Checks if there is a next page
