@@ -27,6 +27,7 @@ class BestGemsClient
               if key =~ /Rank|Diff|Downloads/
                 value = value.gsub(",", "").to_i
               end
+              key = key.gsub(/\s/, "").split(/(?=[A-Z])/).join("_").downcase # to snake_case
               [key, value]
             }.to_h
           end
