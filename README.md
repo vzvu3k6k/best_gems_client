@@ -1,29 +1,32 @@
 # BestGemsClient
 
-TODO: Write a gem description
+A scraper for http://bestgems.org/.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+BestGemsClient is yet to be released on rubygems.org.
 
-    gem 'best_gems_client'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install best_gems_client
+`git clone https://github.com/vzvu3k6k/best_gems_client/ && cd best_gems_client && bundle && bundle exec rake install`
 
 ## Usage
 
-TODO: Write usage instructions here
+```rb
+require "best_gems_client"
+
+client = BestGemsClient.new
+client.featured #=> Featured gem ranking (http://bestgems.org/featured)
+client.daily    #=> Daily gem ranking    (http://bestgems.org/daily)
+client.total    #=> Total gem ranking    (http://bestgems.org/total)
+```
+
+All rankings are given as `Enumerator::Lazy`.
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/best_gems_client/fork )
+1. Fork it ( https://github.com/vzvu3k6k/best_gems_client/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
+
+Tips: `$ bundle exec rake test` to run tests.
