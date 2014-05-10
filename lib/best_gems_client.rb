@@ -19,7 +19,10 @@ class BestGemsClient
           table = html.at("table")
           keys = table.at("tr").search("th").map(&:text)
 
-          table.search("tr").drop(1).each do |tr|
+          gems = table.search("tr").drop(1)
+          break if gems.empty? # If `current_page` is too large, an empty table will be returned.
+
+          gems.each do |tr|
             y << keys.zip(tr.search("td").map(&:text)).map{|key, value|
               if key =~ /Rank|Diff|Downloads/
                 value = value.gsub(",", "").to_i
