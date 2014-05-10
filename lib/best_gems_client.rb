@@ -3,8 +3,13 @@ require "open-uri"
 require "nokogiri"
 
 class BestGemsClient
+  def initialize(user_agent = nil)
+    @user_agent = user_agent
+  end
+
   def get(path)
-    open("http://bestgems.org/#{path}", "User-Agent" => "BestGemsClient #{VERSION}")
+    open("http://bestgems.org/#{path}",
+         "User-Agent" => @user_agent || "BestGemsClient #{VERSION}")
   end
 
   %w(total daily featured).each do |name|
