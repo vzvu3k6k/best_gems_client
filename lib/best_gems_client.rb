@@ -28,7 +28,7 @@ class BestGemsClient
               key = key.gsub(/\s/, "").split(/(?=[A-Z])/).join("_").downcase # to snake_case
               [key, value]
             }.to_h
-            gem["link"] = tr.at('a[href^="http://bestgems.org/gems/"]')["href"]
+            gem["link"] = tr.at('a[href*="/gems/"]')["href"]
             y << gem
           end
 
