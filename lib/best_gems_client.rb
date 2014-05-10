@@ -31,6 +31,7 @@ class BestGemsClient
             }.to_h
           end
 
+          break if html.at(".pagination .disabled") # Checks if there is a next page
           current_page += 1
         end
       }.lazy
