@@ -3,8 +3,6 @@ require "open-uri"
 require "nokogiri"
 
 class BestGemsClient
-  VERSION = "0.0.1"
-
   def get(path)
     open("http://bestgems.org/#{path}", "User-Agent" => "BestGemsClient #{VERSION}")
   end
