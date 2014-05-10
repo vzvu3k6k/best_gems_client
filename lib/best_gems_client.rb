@@ -18,10 +18,8 @@ class BestGemsClient
         current_page = page
         loop do
           html = Nokogiri::HTML.parse(get("#{name}?page=#{current_page}"))
-
           table = html.at("table")
           keys = table.at("tr").search("th").map(&:text)
-
           gems = table.search("tr").drop(1)
           break if gems.empty? # If `current_page` is too large, an empty table will be returned.
 
@@ -33,7 +31,9 @@ class BestGemsClient
               key = key.gsub(/\s/, "").split(/(?=[A-Z])/).join("_").downcase # to snake_case
               [key, value]
             }.to_h
+
             gem["link"] = tr.at('a[href*="/gems/"]')["href"]
+
             y << gem
           end
 
