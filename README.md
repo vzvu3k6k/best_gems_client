@@ -10,6 +10,8 @@ BestGemsClient is yet to be released on rubygems.org.
 
 ## Usage
 
+This gem is beta and subject to imcompatible changes without notice.
+
 ```rb
 require "best_gems_client"
 
