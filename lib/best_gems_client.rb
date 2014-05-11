@@ -3,6 +3,8 @@ require "open-uri"
 require "nokogiri"
 
 class BestGemsClient
+  BASE_URL = "http://bestgems.org/"
+
   def initialize(user_agent: nil, request_per_minute: 10)
     @user_agent = user_agent
     @request_per_minute = request_per_minute
@@ -14,7 +16,7 @@ class BestGemsClient
     sleep(@request_timestamps.min + 60 - Time.now) if @request_timestamps.size >= @request_per_minute
     @request_timestamps << Time.now
 
-    open("http://bestgems.org/#{path}",
+    open("#{BASE_URL}#{path}",
          "User-Agent" => @user_agent || "BestGemsClient #{VERSION}")
   end
 
@@ -38,7 +40,7 @@ class BestGemsClient
               [key, value]
             }.to_h
 
-            gem["link"] = tr.at('a[href*="/gems/"]')["href"]
+            gem["link"] = URI.join(BASE_URL, tr.at('a[href*="/gems/"]')["href"])
 
             y << gem
           end
