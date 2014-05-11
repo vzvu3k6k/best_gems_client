@@ -3,7 +3,7 @@ require "open-uri"
 require "nokogiri"
 
 class BestGemsClient
-  def initialize(user_agent = nil)
+  def initialize(user_agent: nil)
     @user_agent = user_agent
   end
 
