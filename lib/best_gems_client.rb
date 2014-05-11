@@ -45,7 +45,7 @@ class BestGemsClient
             y << gem
           end
 
-          break if html.at(".pagination .disabled") # Checks if there is a next page
+          break if html.at(".pagination .disabled:last-of-type") # Checks if there is a next page
           current_page += 1
         end
       }.lazy
