@@ -3,11 +3,17 @@ require "open-uri"
 require "nokogiri"
 
 class BestGemsClient
-  def initialize(user_agent: nil)
+  def initialize(user_agent: nil, request_per_minute: 10)
     @user_agent = user_agent
+    @request_per_minute = request_per_minute
+    @request_timestamps = []
   end
 
   def get(path)
+    @request_timestamps.select!{|i| Time.now - i <= 60}
+    sleep(@request_timestamps.min + 60 - Time.now) if @request_timestamps.size >= @request_per_minute
+    @request_timestamps << Time.now
+
     open("http://bestgems.org/#{path}",
          "User-Agent" => @user_agent || "BestGemsClient #{VERSION}")
   end
