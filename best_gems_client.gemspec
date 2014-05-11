@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = BestGemsClient::VERSION
   spec.authors       = ["vzvu3k6k"]
   spec.email         = ["vzvu3k6k@gmail.com"]
-  spec.summary       = %q{A scraper for bestgems.org}
+  spec.summary       = %q{A scraper for bestgems.org, rubygem download rankings}
   spec.description   = spec.summary
   spec.homepage      = ""
   spec.license       = "MIT"

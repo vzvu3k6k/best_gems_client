@@ -1,6 +1,6 @@
 # BestGemsClient
 
-A scraper for http://bestgems.org/.
+A scraper for http://bestgems.org/ (rubygem download rankings).
 
 ## Installation
 
