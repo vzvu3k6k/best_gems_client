@@ -19,7 +19,13 @@ client.daily    #=> Daily gem ranking    (http://bestgems.org/daily)
 client.total    #=> Total gem ranking    (http://bestgems.org/total)
 ```
 
-All rankings are given as `Enumerator::Lazy`.
+All rankings are given as `Enumerator::Lazy` so that you don't need to worry about pagination.
+
+```rb
+# Gets top 10 gems whose name is shorter than 5 characters
+# from top 100 gems in total download ranking
+client.total.take(100).select{|gem| gem["name"].size < 5}.take(10).force
+```
 
 ## Contributing
 
